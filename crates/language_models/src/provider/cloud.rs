@@ -763,7 +763,7 @@ impl LanguageModel for CloudLanguageModel {
     }
 
     fn supports_burn_mode(&self) -> bool {
-        self.model.supports_max_mode
+        true
     }
 
     fn telemetry_id(&self) -> String {
