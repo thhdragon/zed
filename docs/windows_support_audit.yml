@@ -1,0 +1,49 @@
+# Windows Support Audit for Zed
+
+audit_date: 2025-07-31
+
+summary:
+  Zed's Windows support is functional but not yet production-grade. The following issues and opportunities for improvement were identified through codebase and documentation analysis.
+
+issues:
+  - id: win-graphics-1
+    title: Vulkan Instability
+    description: Vulkan driver issues and lack of robust fallback cause launch failures and rendering bugs on some Windows systems.
+    recommendation: Implement GPU/driver detection, offer DirectX/software fallback, and improve error reporting.
+
+  - id: win-build-1
+    title: Build Toolchain Complexity
+    description: Windows builds require specific Visual Studio components, SDKs, and CMake, leading to frequent build failures.
+    recommendation: Automate environment checks, provide setup scripts, and improve diagnostics for missing dependencies.
+
+  - id: win-path-1
+    title: Path Length Limitations
+    description: Windows path length limits can break builds and dependency resolution.
+    recommendation: Proactively check for path length issues and automate enabling long path support.
+
+  - id: win-locale-1
+    title: Locale/Encoding Issues
+    description: Non-English Windows installations can cause Postgres and other tools to fail due to incompatible locale settings.
+    recommendation: Detect locale at startup and prompt for or auto-set compatible settings.
+
+  - id: win-testing-1
+    title: Insufficient Windows CI/Test Coverage
+    description: Fewer automated tests and less telemetry on Windows lead to undetected regressions.
+    recommendation: Expand Windows CI coverage and add more integration/graphics tests.
+
+  - id: win-ui-1
+    title: Windows-Specific UI/UX Bugs
+    description: Platform-specific issues with input, window management, and DPI scaling.
+    recommendation: Audit and fix UI bugs, and gather user feedback for prioritization.
+
+  - id: win-docs-1
+    title: Documentation Gaps
+    description: Windows-specific troubleshooting and setup steps are not always clear or up-to-date.
+    recommendation: Enhance documentation and provide step-by-step guides for common issues.
+
+next_steps:
+  - Prioritize Vulkan fallback and error handling improvements.
+  - Develop PowerShell setup scripts for environment validation.
+  - Expand Windows CI and collect user telemetry on failures.
+  - Schedule regular audits of Windows-specific bugs and user feedback.
+  - Update documentation as improvements are made.
