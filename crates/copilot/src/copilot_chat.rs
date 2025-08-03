@@ -109,7 +109,10 @@ pub struct Model {
     policy: Option<ModelPolicy>,
     vendor: ModelVendor,
     model_picker_enabled: bool,
+    #[serde(default)]
+    pub supports_max_mode: bool,
 }
+
 
 #[derive(Clone, Serialize, Deserialize, Debug, Eq, PartialEq)]
 struct ModelCapabilities {
@@ -170,6 +173,9 @@ pub struct ImageUrl {
 }
 
 impl Model {
+    pub fn supports_max_mode(&self) -> bool {
+        self.supports_max_mode
+    }
     pub fn uses_streaming(&self) -> bool {
         self.capabilities.supports.streaming
     }

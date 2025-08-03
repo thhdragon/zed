@@ -194,6 +194,9 @@ pub struct CopilotChatLanguageModel {
 }
 
 impl LanguageModel for CopilotChatLanguageModel {
+    fn supports_burn_mode(&self) -> bool {
+        self.model.supports_max_mode()
+    }
     fn id(&self) -> LanguageModelId {
         LanguageModelId::from(self.model.id().to_string())
     }
